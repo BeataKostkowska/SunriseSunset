@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  box-sizing: border-box;
+  height: 100dvh;
+  background-color: #fff8e7;
+  font-family: "Lato", serif;
+  font-weight: 500;
+  font-style: italic; 
+  color: #4b3621
+}
+
+.hours-container {
+  padding: 20px;
+  width: 100dvw;
+  height: 20dvh;
+  display: flex;
+  justify-content: space-around;
+}
+
+#map {
+  width: 100dvw;
+  height: 80dvh;
+  position: absolute;
+  bottom: 0;
+}
