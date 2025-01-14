@@ -1,14 +1,19 @@
+// HTML elements:
+const btnMyLocation = document.querySelector(".btn-my-location");
+
 // Get geolocation from browser:
+let browserCoordinates;
 let coordinates;
 let map, marker;
+const startZoom = 11;
 
 const getCoordinates = function () {
   return new Promise((resolve, reject) => {
     navigator.geolocation.getCurrentPosition((position) => {
       const { latitude, longitude } = position.coords;
       //   console.log(position.coords);
-      coordinates = [latitude, longitude];
-      resolve(coordinates);
+      browserCoordinates = [latitude, longitude];
+      resolve(browserCoordinates);
     }),
       (err) => {
         console.log(`Couldn't get your location`);
@@ -36,12 +41,19 @@ const displayMap = function (coordinates) {
 // Get geolocation for clicked place on the map
 const getCoordinatesClick = function (e) {
   const { lat, lng } = e.latlng;
-  let currentZoom = map.getZoom();
   coordinates = [lat, lng];
-  map.flyTo(coordinates, currentZoom < 11 ? "11" : currentZoom);
+
+  let currentZoom = map.getZoom();
+  let zoom = currentZoom < startZoom ? `${startZoom}` : currentZoom;
+
+  moveToPlace(coordinates, zoom);
+  getSunriseSunset(coordinates);
+};
+
+const moveToPlace = function (coordinates, zoom) {
+  map.flyTo(coordinates, zoom);
   map.removeLayer(marker);
   marker = new L.marker(coordinates).addTo(map);
-  getSunriseSunset(coordinates);
 };
 
 // Get hours of sunrise and sunset in chosen location from https://sunrisesunset.io/api/
@@ -59,8 +71,14 @@ const getSunriseSunset = function (coordinates) {
 };
 
 // Initialization
-getCoordinates().then((coordinates) => {
-  console.log(`Coordinates from browser: ${coordinates}`);
-  displayMap(coordinates);
-  getSunriseSunset(coordinates);
+getCoordinates().then((browserCoordinates) => {
+  console.log(`Coordinates from browser: ${browserCoordinates}`);
+  // browserCoordinates = coordinates;
+  displayMap(browserCoordinates);
+  getSunriseSunset(browserCoordinates);
 });
+
+// Go to my location
+btnMyLocation.addEventListener("click", () =>
+  moveToPlace(browserCoordinates, startZoom)
+);

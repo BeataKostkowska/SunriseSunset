@@ -5,8 +5,8 @@ body {
   background-color: #fff8e7;
   font-family: "Lato", serif;
   font-weight: 500;
-  font-style: italic; 
-  color: #4b3621
+  font-style: italic;
+  color: #4b3621;
 }
 
 .hours-container {
@@ -22,4 +22,8 @@ body {
   height: 80dvh;
   position: absolute;
   bottom: 0;
+}
+
+.btn-my-location {
+  height: 20px;
 }
