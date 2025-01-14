@@ -1,5 +1,6 @@
 // HTML elements:
 const btnMyLocation = document.querySelector(".btn-my-location");
+const inputCity = document.querySelector(".city-input");
 
 // Get geolocation from browser:
 let browserCoordinates;
@@ -82,3 +83,23 @@ getCoordinates().then((browserCoordinates) => {
 btnMyLocation.addEventListener("click", () =>
   moveToPlace(browserCoordinates, startZoom)
 );
+
+// Search for city coordinates in API:
+const API_KEY = "";
+const getCoordinatesInput = async function (city) {
+  return fetch(`https://geocode.xyz/${city}?json=1&auth=${API_KEY}`)
+    .then((res) => res.json())
+    .then((data) => {
+      let { latt: latitude, longt: longitude } = data;
+      return [latitude, longitude];
+    });
+};
+
+inputCity.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    getCoordinatesInput(inputCity.value).then((coordinates) =>
+      moveToPlace(coordinates, startZoom)
+    );
+    inputCity.value = "";
+  }
+});

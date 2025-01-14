@@ -9,6 +9,13 @@ body {
   color: #4b3621;
 }
 
+#map {
+  width: 100dvw;
+  height: 80dvh;
+  position: absolute;
+  bottom: 0;
+}
+/*
 .hours-container {
   padding: 20px;
   width: 100dvw;
@@ -16,14 +23,25 @@ body {
   display: flex;
   justify-content: space-around;
 }
-
-#map {
-  width: 100dvw;
-  height: 80dvh;
-  position: absolute;
-  bottom: 0;
+.btn-my-location {
+  height: 32px;
+  padding: 8px 15px;
+  background-color: #4b3621;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
-.btn-my-location {
-  height: 20px;
+.city-input {
+  padding: 10px;
+  font-size: 1.2rem;
+  border: 2px solid #4b3621;
+  border-radius: 4px;
+  width: 80%;
+  max-width: 400px;
+  max-height: 32px;
+  margin-bottom: 15px;
+  background-color: #fbf6eb;
 }
