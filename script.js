@@ -65,10 +65,16 @@ const getSunriseSunset = function (coordinates) {
     .then((res) => res.json())
     .then((data) => {
       let { sunrise, sunset } = data.results;
-      console.log(`sunrise: ${sunrise}; sunset: ${sunset}`);
-      document.getElementById("sunrise").textContent = `Sunrise: ${sunrise}`;
-      document.getElementById("sunset").textContent = `Sunset: ${sunset}`;
+      // console.log(`sunrise: ${sunrise}; sunset: ${sunset}`);
+      // document.getElementById("sunrise").textContent = `Sunrise: ${sunrise}`;
+      // document.getElementById("sunset").textContent = `Sunset: ${sunset}`;
+      showPopup(sunrise, sunset);
     });
+};
+
+// Show sunrise&sunset in PopUp
+const showPopup = function (sunrise, sunset) {
+  marker.bindPopup(`Sunrise: ${sunrise}<br>Sunset: ${sunset}`).openPopup();
 };
 
 // Initialization
