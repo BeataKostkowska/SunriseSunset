@@ -94,19 +94,25 @@ btnMyLocation.addEventListener("click", () => {
 // Search for city coordinates in API:
 const API_KEY = "";
 const getCoordinatesInput = async function (city) {
-  return fetch(`https://geocode.xyz/${city}?json=1&auth=${API_KEY}`)
+  const inputCoordinates = await fetch(
+    `https://geocode.xyz/${city}?json=1&auth=${API_KEY}`
+  )
     .then((res) => res.json())
     .then((data) => {
       let { latt: latitude, longt: longitude } = data;
       return [latitude, longitude];
     });
+
+  console.log(inputCoordinates);
+  return inputCoordinates;
 };
 
 inputCity.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
-    getCoordinatesInput(inputCity.value).then((coordinates) =>
-      moveToPlace(coordinates, startZoom)
-    );
+    getCoordinatesInput(inputCity.value).then((coordinates) => {
+      moveToPlace(coordinates, startZoom);
+      getSunriseSunset(coordinates);
+    });
     inputCity.value = "";
   }
 });
