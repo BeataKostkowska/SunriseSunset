@@ -1,3 +1,33 @@
+const express = require("express");
+const router = express.Router();
+
+const fetchLocationCoords = async (city) => {
+  const url = `https://geocode.xyz/${city}?json=1&auth=${process.env.GEOCODE_API_KEY}`;
+  try {
+    const inputCoordinates = await fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        let { latt: latitude, longt: longitude } = data;
+        return [latitude, longitude];
+      });
+    return inputCoordinates;
+  } catch (err) {
+    return { Error: err.stack };
+  }
+};
+
+router.get("/", (req, res) => {
+  res.json({ success: "hello sun!" });
+});
+
+router.get("/:city", async (req, res) => {
+  const city = req.params.city;
+  const data = await fetchLocationCoords(city);
+  res.json(data);
+});
+
+module.exports = router;
+/*
 // HTML elements:
 const btnMyLocation = document.querySelector(".btn-my-location");
 const inputCity = document.querySelector(".city-input");
@@ -116,3 +146,4 @@ inputCity.addEventListener("keydown", (e) => {
     inputCity.value = "";
   }
 });
+*/
