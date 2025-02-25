@@ -86,9 +86,10 @@ getCoordinates().then((browserCoordinates) => {
 });
 
 // Go to my location
-btnMyLocation.addEventListener("click", () =>
-  moveToPlace(browserCoordinates, startZoom)
-);
+btnMyLocation.addEventListener("click", () => {
+  moveToPlace(browserCoordinates, startZoom);
+  getSunriseSunset(browserCoordinates);
+});
 
 // Search for city coordinates in API:
 const API_KEY = "";

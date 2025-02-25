@@ -2,11 +2,45 @@ body {
   margin: 0;
   box-sizing: border-box;
   height: 100dvh;
+  width: 100dvw;
   background-color: #fff8e7;
   font-family: "Lato", serif;
   font-weight: 500;
   font-style: italic;
   color: #4b3621;
+}
+main {
+  height: 100dvh;
+  width: 100dvw;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 20dvh;
+}
+
+.city-input {
+  height: 2rem;
+  width: 30%;
+  padding: 10px;
+  font-size: 1.2rem;
+  border: 2px solid #4b3621;
+  border-radius: 6px;
+  background-color: #fbf6eb;
+}
+
+.btn-my-location {
+  height: 2rem;
+  width: 15%;
+  background-color: #4b3621;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.2rem;
+  cursor: pointer;
 }
 
 #map {
@@ -15,6 +49,11 @@ body {
   position: absolute;
   bottom: 0;
 }
+
+/* .popupStyle {
+  background-color: aqua;
+} */
+ 
 /*
 .hours-container {
   padding: 20px;
@@ -23,25 +62,4 @@ body {
   display: flex;
   justify-content: space-around;
 }
-.btn-my-location {
-  height: 32px;
-  padding: 8px 15px;
-  background-color: #4b3621;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.city-input {
-  padding: 10px;
-  font-size: 1.2rem;
-  border: 2px solid #4b3621;
-  border-radius: 4px;
-  width: 80%;
-  max-width: 400px;
-  max-height: 32px;
-  margin-bottom: 15px;
-  background-color: #fbf6eb;
-}
+  */
