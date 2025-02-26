@@ -1,33 +1,3 @@
-const express = require("express");
-const router = express.Router();
-
-const fetchLocationCoords = async (city) => {
-  const url = `https://geocode.xyz/${city}?json=1&auth=${process.env.GEOCODE_API_KEY}`;
-  try {
-    const inputCoordinates = await fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        let { latt: latitude, longt: longitude } = data;
-        return [latitude, longitude];
-      });
-    return inputCoordinates;
-  } catch (err) {
-    return { Error: err.stack };
-  }
-};
-
-router.get("/", (req, res) => {
-  res.json({ success: "hello sun!" });
-});
-
-router.get("/:city", async (req, res) => {
-  const city = req.params.city;
-  const data = await fetchLocationCoords(city);
-  res.json(data);
-});
-
-module.exports = router;
-/*
 // HTML elements:
 const btnMyLocation = document.querySelector(".btn-my-location");
 const inputCity = document.querySelector(".city-input");
@@ -121,29 +91,24 @@ btnMyLocation.addEventListener("click", () => {
   getSunriseSunset(browserCoordinates);
 });
 
-// Search for city coordinates in API:
-const API_KEY = "";
+// Search for city coordinates in geocode API:
 const getCoordinatesInput = async function (city) {
-  const inputCoordinates = await fetch(
-    `https://geocode.xyz/${city}?json=1&auth=${API_KEY}`
-  )
-    .then((res) => res.json())
-    .then((data) => {
-      let { latt: latitude, longt: longitude } = data;
-      return [latitude, longitude];
-    });
-
-  console.log(inputCoordinates);
-  return inputCoordinates;
+  const response = await fetch(`http://localhost:3000/${city}`);
+  const data = await response.json();
+  const { latt: latitude, longt: longitude } = data;
+  console.log(latitude, longitude);
+  return [latitude, longitude];
 };
 
-inputCity.addEventListener("keydown", (e) => {
+inputCity.addEventListener("keydown", async (e) => {
   if (e.key === "Enter") {
-    getCoordinatesInput(inputCity.value).then((coordinates) => {
+    const coordinates = await getCoordinatesInput(inputCity.value);
+    if (coordinates) {
       moveToPlace(coordinates, startZoom);
       getSunriseSunset(coordinates);
-    });
+    } else {
+      console.log("No coordinates for searched city");
+    }
     inputCity.value = "";
   }
 });
-*/
