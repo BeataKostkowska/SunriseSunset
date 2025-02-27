@@ -9,11 +9,9 @@ const cors = require("cors");
 const app = express();
 const port = 3000;
 
-// const sun = require("./public");
-
 app.use(express.json());
 
-const whiteList = ["http://127.0.0.1", "http://localhost:3000/"]; // URL that have permition to access routes
+const whiteList = ["http://127.0.0.1", "http://localhost:3000"]; // URL that have permition to access routes
 // set up URL of where the app is hosted
 const corsOptions = {
   origin: (origin, callback) => {
