@@ -5,6 +5,7 @@ import { setTodaysDate } from "./js/date.js";
 
 // HTML elements:
 const btnMyLocation = document.querySelector(".btn-my-location");
+const btnSearch = document.querySelector(".btn-seacrh");
 const inputCity = document.querySelector(".city-input");
 
 // variables
@@ -32,6 +33,36 @@ btnMyLocation.addEventListener("click", async () => {
 });
 
 // Go to searched city
+// const searchCity = async () => {
+//   const coordinates = await getCoordinatesInput(inputCity.value);
+//   if (coordinates) {
+//     moveToPlace(coordinates, startZoom);
+
+//     const [sunrise, sunset] = await getSunriseSunset(coordinates);
+//     showPopup(sunrise, sunset);
+//   } else {
+//     console.log("No coordinates for searched city");
+//   }
+//   inputCity.value = "";
+// };
+
+// document.addEventListener("DOMContentLoaded", () => {
+btnSearch.addEventListener("click", async () => {
+  // if (inputCity.value) {
+  const coordinates = await getCoordinatesInput(inputCity.value);
+  if (coordinates) {
+    moveToPlace(coordinates, startZoom);
+
+    const [sunrise, sunset] = await getSunriseSunset(coordinates);
+    showPopup(sunrise, sunset);
+  } else {
+    console.log("No coordinates for searched city");
+  }
+  inputCity.value = "";
+  // }
+});
+// });
+
 inputCity.addEventListener("keydown", async (e) => {
   if (e.key === "Enter") {
     const coordinates = await getCoordinatesInput(inputCity.value);
@@ -46,4 +77,3 @@ inputCity.addEventListener("keydown", async (e) => {
     inputCity.value = "";
   }
 });
-

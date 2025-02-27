@@ -16,7 +16,7 @@ main {
 
 .menu {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
   height: 20dvh;
@@ -50,7 +50,6 @@ main {
   bottom: 0;
 }
 
-/* .popupStyle { */
 .leaflet-popup-content-wrapper {
   background-color: aqua;
   width: auto;
