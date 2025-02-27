@@ -14,8 +14,6 @@ export const setTodaysDate = function () {
   dateInput.setAttribute("value", dateValue);
 };
 
-// const dateInput = document.getElementById("date");
-
 dateInput.addEventListener("change", async (e) => {
   dateInput.setAttribute("value", e.target.value);
 
