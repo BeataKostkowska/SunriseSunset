@@ -50,10 +50,26 @@ main {
   bottom: 0;
 }
 
-/* .popupStyle {
+/* .popupStyle { */
+.leaflet-popup-content-wrapper {
   background-color: aqua;
-} */
- 
+  width: auto;
+}
+.leaflet-popup-tip {
+  background-color: aqua;
+}
+.leaflet-popup-content p {
+  margin: 0;
+  padding-bottom: 4px;
+  font-family: "Lato", serif;
+  font-size: 16px;
+}
+.leaflet-popup-content input {
+  margin: 0;
+  font-family: "Lato", serif;
+  font-size: 14px;
+}
+
 /*
 .hours-container {
   padding: 20px;

@@ -9,8 +9,10 @@ export const getCoordinatesInput = async function (city) {
 
 // Get hours of sunrise and sunset in chosen location from https://sunrisesunset.io/api/
 export const getSunriseSunset = async function (coordinates) {
+  const date = document.getElementById("date").value;
+
   const response = await fetch(
-    `https://api.sunrisesunset.io/json?lat=${coordinates[0]}&lng=${coordinates[1]}`
+    `https://api.sunrisesunset.io/json?lat=${coordinates[0]}&lng=${coordinates[1]}&date=${date}`
   );
   const data = await response.json();
   const { sunrise, sunset } = data.results;

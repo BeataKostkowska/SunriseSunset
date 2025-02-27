@@ -1,6 +1,7 @@
 import { getSunriseSunset } from "./api.js";
 
-let map, marker;
+let map 
+export let marker;
 const startZoom = 11;
 
 // Display map:
@@ -42,5 +43,13 @@ export const moveToPlace = function (coordinates, zoom) {
 
 // Show sunrise&sunset in PopUp
 export const showPopup = function (sunrise, sunset) {
-  marker.bindPopup(`Sunrise: ${sunrise}<br>Sunset: ${sunset}`).openPopup();
+  marker
+    .bindPopup(
+      `
+      <p>Sunrise: ${sunrise}</p>
+      <p>Sunset: ${sunset}</p>
+  `
+    )
+    .openPopup();
 };
+
