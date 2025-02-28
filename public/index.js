@@ -5,7 +5,7 @@ import { setTodaysDate } from "./js/date.js";
 
 // HTML elements:
 const btnMyLocation = document.querySelector(".btn-my-location");
-const btnSearch = document.querySelector(".btn-seacrh");
+const btnSearch = document.querySelector(".btn-search");
 const inputCity = document.querySelector(".city-input");
 
 // variables
@@ -33,22 +33,7 @@ btnMyLocation.addEventListener("click", async () => {
 });
 
 // Go to searched city
-// const searchCity = async () => {
-//   const coordinates = await getCoordinatesInput(inputCity.value);
-//   if (coordinates) {
-//     moveToPlace(coordinates, startZoom);
-
-//     const [sunrise, sunset] = await getSunriseSunset(coordinates);
-//     showPopup(sunrise, sunset);
-//   } else {
-//     console.log("No coordinates for searched city");
-//   }
-//   inputCity.value = "";
-// };
-
-// document.addEventListener("DOMContentLoaded", () => {
-btnSearch.addEventListener("click", async () => {
-  // if (inputCity.value) {
+const searchCity = async function () {
   const coordinates = await getCoordinatesInput(inputCity.value);
   if (coordinates) {
     moveToPlace(coordinates, startZoom);
@@ -59,21 +44,10 @@ btnSearch.addEventListener("click", async () => {
     console.log("No coordinates for searched city");
   }
   inputCity.value = "";
-  // }
-});
-// });
-
+};
+// 1. option with search button
+btnSearch.addEventListener("click", searchCity);
+// 2. option with enter
 inputCity.addEventListener("keydown", async (e) => {
-  if (e.key === "Enter") {
-    const coordinates = await getCoordinatesInput(inputCity.value);
-    if (coordinates) {
-      moveToPlace(coordinates, startZoom);
-
-      const [sunrise, sunset] = await getSunriseSunset(coordinates);
-      showPopup(sunrise, sunset);
-    } else {
-      console.log("No coordinates for searched city");
-    }
-    inputCity.value = "";
-  }
+  if (e.key === "Enter") searchCity();
 });
