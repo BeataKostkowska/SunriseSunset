@@ -39,8 +39,7 @@ const getCoordinatesClick = async function (e) {
 export const moveToPlace = function (coordinates, zoom) {
   map.flyTo(coordinates, zoom);
   marker.setLatLng(coordinates);
-  // map.removeLayer(marker);
-  // marker = new L.marker(coordinates).addTo(map);
+  marker.closePopup();
 };
 
 // Show sunrise&sunset in PopUp
