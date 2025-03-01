@@ -38,8 +38,9 @@ const getCoordinatesClick = async function (e) {
 
 export const moveToPlace = function (coordinates, zoom) {
   map.flyTo(coordinates, zoom);
-  map.removeLayer(marker);
-  marker = new L.marker(coordinates).addTo(map);
+  marker.setLatLng(coordinates);
+  // map.removeLayer(marker);
+  // marker = new L.marker(coordinates).addTo(map);
 };
 
 // Show sunrise&sunset in PopUp
@@ -54,7 +55,7 @@ export const showPopup = function (sunrise, sunset) {
     )
     .on("popupopen", async () => {
       const dateInput = document.getElementById("date");
-      
+
       const updatePopupInformation = async (e) => {
         const coords = [marker.getLatLng().lat, marker.getLatLng().lng];
         console.log(`marker coords: ${coords}`);
