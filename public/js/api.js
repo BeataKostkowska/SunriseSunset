@@ -1,3 +1,5 @@
+import { setTodaysDate } from "./date.js";
+
 // Search for city coordinates in geocode API:
 export const getCoordinatesInput = async function (city) {
   const response = await fetch(`http://localhost:3000/${city}`);
@@ -8,9 +10,11 @@ export const getCoordinatesInput = async function (city) {
 };
 
 // Get hours of sunrise and sunset in chosen location from https://sunrisesunset.io/api/
-export const getSunriseSunset = async function (coordinates) {
-  const date = document.getElementById("date").value;
-
+const todaysDate = setTodaysDate();
+export const getSunriseSunset = async function (
+  coordinates,
+  date = todaysDate
+) {
   const response = await fetch(
     `https://api.sunrisesunset.io/json?lat=${coordinates[0]}&lng=${coordinates[1]}&date=${date}`
   );

@@ -1,6 +1,7 @@
 import { getSunriseSunset } from "./api.js";
+import { setTodaysDate } from "./date.js";
 
-let map 
+let map;
 export let marker;
 const startZoom = 11;
 
@@ -48,8 +49,32 @@ export const showPopup = function (sunrise, sunset) {
       `
       <p>Sunrise: ${sunrise}</p>
       <p>Sunset: ${sunset}</p>
+      <input type="date" id="date" value="${setTodaysDate()}"/>
   `
     )
+    .on("popupopen", async () => {
+      const dateInput = document.getElementById("date");
+      
+      const updatePopupInformation = async (e) => {
+        const coords = [marker.getLatLng().lat, marker.getLatLng().lng];
+        console.log(`marker coords: ${coords}`);
+
+        const newDate = e.target.value;
+        dateInput.setAttribute("value", newDate);
+
+        const [newSunrise, newSunset] = await getSunriseSunset(coords, newDate);
+
+        marker.getPopup().setContent(`
+          <p>Sunrise: ${newSunrise}</p>
+          <p>Sunset: ${newSunset}</p>
+          <input type="date" id="date" value="${newDate}"/>
+        `);
+
+        const newDateInput = document.getElementById("date");
+        newDateInput.addEventListener("change", updatePopupInformation);
+      };
+
+      dateInput.addEventListener("change", updatePopupInformation);
+    })
     .openPopup();
 };
-

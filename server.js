@@ -25,6 +25,7 @@ const corsOptions = {
 }; // every route will be checked against whiteList
 app.use(cors(corsOptions));
 
+
 const limiter = rateLimit({
   windowMs: 1000, //milliseconds
   max: 10, // 10 request per second (not to block loading of static files)
