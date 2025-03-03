@@ -1,5 +1,5 @@
 import { getCoordinatesBrowser } from "./js/geolocation.js";
-import { displayMap, moveToPlace, showPopup } from "./js/map.js";
+import { displayMap, moveToPlace, showPopup, marker } from "./js/map.js";
 import { getCoordinatesInput, getSunriseSunset } from "./js/api.js";
 import { setTodaysDate } from "./js/date.js";
 
