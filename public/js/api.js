@@ -3,7 +3,7 @@ import { setTodaysDate } from "./date.js";
 // Search for city coordinates in geocode API:
 export const getCoordinatesInput = async function (city) {
   const response = await fetch(
-    `https://suntime-kostkowska.netlify.app/${city}`
+    `https://suntime-kostkowska.onrender.com/${city}`
   );
   const data = await response.json();
   const { latt: latitude, longt: longitude } = data;
