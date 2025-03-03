@@ -11,10 +11,6 @@ body {
   font-style: italic;
   color: #4b3621;
 }
-/* main {
-  height: 100dvh;
-  width: 100dvw;
-} */
 
 .menu {
   display: flex;
@@ -78,7 +74,7 @@ body {
 
 #map {
   width: 100dvw;
-  height: 80dvh;
+  min-height: 80dvh;
   position: absolute;
   bottom: 0;
 }
