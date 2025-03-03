@@ -11,7 +11,9 @@ const port = 3000;
 
 app.use(express.json());
 
-const whiteList = ["http://127.0.0.1", "http://localhost:3000"]; // URL that have permition to access routes
+const whiteList = [
+  "https://suntime-kostkowska.netlify.app",
+]; // URL that have permition to access routes
 // set up URL of where the app is hosted
 const corsOptions = {
   origin: (origin, callback) => {
@@ -24,7 +26,6 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 }; // every route will be checked against whiteList
 app.use(cors(corsOptions));
-
 
 const limiter = rateLimit({
   windowMs: 1000, //milliseconds
